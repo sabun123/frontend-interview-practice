@@ -21,7 +21,7 @@ interface TextQuestion extends BaseQuestion {
   answer: string;
 }
 
-interface MultipleChoiceQuestion extends BaseQuestion {
+export interface MultipleChoiceQuestion extends BaseQuestion {
   type: 'multiple-choice';
   options: string[];
   correctAnswer: number; // Index of the correct option
