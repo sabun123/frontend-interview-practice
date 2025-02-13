@@ -13,6 +13,98 @@
       "answer": "HTML5 introduced several powerful APIs:\n1. LocalStorage/SessionStorage\n- Client-side data storage\n- Key-value pair system\n\n2. Canvas/WebGL\n- 2D/3D graphics rendering\n- Game development\n\n3. Web Workers\n- Background processing\n- Multi-threading\n\n4. Geolocation\n- Location-based services\n- Maps integration",
       "difficulty": "intermediate",
       "tags": ["apis", "web-platform"]
+    },
+    {
+      "id": "semantic-html",
+      "type": "multiple-choice",
+      "question": "Which HTML5 semantic element would be most appropriate for a page's navigation menu?",
+      "options": [
+        "<nav>",
+        "<header>",
+        "<menu>",
+        "<sidebar>"
+      ],
+      "correctAnswer": 0,
+      "explanation": "<nav> is specifically designed for major navigation blocks. While <header> could contain navigation, <nav> is more semantic for pure navigation. <menu> is for command menus, and <sidebar> isn't a valid HTML element.",
+      "difficulty": "beginner",
+      "tags": ["semantics", "accessibility"]
+    },
+    {
+      "id": "html5-storage",
+      "type": "text",
+      "question": "Compare and contrast LocalStorage, SessionStorage, and Cookies. When would you use each?",
+      "answer": "Storage Options Comparison:\n\n1. LocalStorage:\n- Persists until explicitly cleared\n- ~5MB storage limit\n- Never sent to server\n- Accessible across tabs/windows\n\n2. SessionStorage:\n- Persists for session only\n- Cleared when tab closes\n- Isolated to single tab\n- ~5MB storage limit\n\n3. Cookies:\n- Sent with every HTTP request\n- ~4KB size limit\n- Can set expiration date\n- Can be secured with flags (HttpOnly, Secure)\n\nUse Cases:\n- LocalStorage: User preferences, cache\n- SessionStorage: Form data, page position\n- Cookies: Authentication, tracking",
+      "difficulty": "intermediate",
+      "tags": ["storage", "security"]
+    },
+    {
+      "id": "html5-forms",
+      "type": "multiple-choice",
+      "question": "Which HTML5 input type provides built-in email validation?",
+      "options": [
+        "<input type=\"text\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$\">",
+        "<input type=\"email\">",
+        "<input type=\"mail\">",
+        "<input type=\"validate-email\">"
+      ],
+      "correctAnswer": 1,
+      "explanation": "<input type=\"email\"> provides:\n- Built-in email format validation\n- Appropriate mobile keyboard\n- Better accessibility\n- No need for custom validation patterns\n- Compatible with form validation API",
+      "difficulty": "beginner",
+      "tags": ["forms", "validation"]
+    },
+    {
+      "id": "web-components",
+      "type": "text",
+      "question": "Explain Web Components and their core technologies. How do they differ from framework components?",
+      "answer": "Web Components consist of three main technologies:\n\n1. Custom Elements:\n- Create new HTML elements\n- Define custom behavior\n- Extend existing elements\n\n2. Shadow DOM:\n- Encapsulated DOM tree\n- Scoped styling\n- Isolation from main document\n\n3. HTML Templates:\n- Define reusable markup\n- Inert until instantiated\n- Cloneable content\n\nDifferences from Framework Components:\n- Framework-agnostic\n- Native browser support\n- True encapsulation\n- No build step required\n- Longer-term stability",
+      "difficulty": "advanced",
+      "tags": ["web-components", "standards"]
+    },
+    {
+      "id": "media-elements",
+      "type": "multiple-choice",
+      "question": "What's the most accessible way to provide multiple audio sources for a sound file?",
+      "options": [
+        "<audio src=\"sound.mp3\">",
+        "<audio controls><source src=\"sound.mp3\"><source src=\"sound.ogg\"></audio>",
+        "<sound src=\"sound.mp3\">",
+        "<media type=\"audio\" src=\"sound.mp3\">"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The second option is best because:\n- Provides fallback formats\n- Includes controls for accessibility\n- Follows proper HTML5 structure\n- Supports multiple codecs\n- Degrades gracefully",
+      "difficulty": "intermediate",
+      "tags": ["media", "accessibility"]
+    },
+    {
+      "id": "html5-apis",
+      "type": "text",
+      "question": "Explain the HTML5 History API and its common use cases.",
+      "answer": "The History API allows manipulation of browser history and URLs:\n\n1. Key Methods:\n- pushState(state, title, url)\n- replaceState(state, title, url)\n- back(), forward(), go()\n\n2. Events:\n- popstate event\n- hashchange event\n\n3. Use Cases:\n- Single Page Applications (SPAs)\n- Custom navigation\n- State management\n- Deep linking\n\nExample:\nhistory.pushState({ page: 2 }, 'Title', '/page2');\nwindow.addEventListener('popstate', handleNavigation);",
+      "difficulty": "advanced",
+      "tags": ["api", "navigation"]
+    },
+    {
+      "id": "accessibility",
+      "type": "multiple-choice",
+      "question": "Which ARIA role should be used for a modal dialog box?",
+      "options": [
+        "role=\"modal\"",
+        "role=\"dialog\"",
+        "role=\"popup\"",
+        "role=\"overlay\""
+      ],
+      "correctAnswer": 1,
+      "explanation": "role=\"dialog\" is correct because:\n- Indicates modal context to screen readers\n- Can be combined with aria-modal=\"true\"\n- Follows W3C accessibility guidelines\n- Properly conveys interaction model\n- Can be enhanced with aria-labelledby",
+      "difficulty": "intermediate",
+      "tags": ["accessibility", "aria"]
+    },
+    {
+      "id": "performance",
+      "type": "text",
+      "question": "What are the key HTML attributes and techniques for optimizing image loading?",
+      "answer": "Image Loading Optimization Techniques:\n\n1. Loading Attributes:\n- loading=\"lazy\"\n- decoding=\"async\"\n- fetchpriority=\"high|low\"\n\n2. Responsive Images:\n- srcset and sizes\n- <picture> element\n- art direction\n\n3. Performance Attributes:\n- width and height (prevents layout shift)\n- aspect-ratio\n- content-visibility\n\n4. Best Practices:\n- Use WebP with fallbacks\n- Proper image dimensions\n- Compression optimization\n- CDN usage",
+      "difficulty": "advanced",
+      "tags": ["performance", "images"]
     }
   ]
 }

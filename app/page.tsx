@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Topics } from "@/components/topics"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -10,12 +11,16 @@ export default function Home() {
           Prepare for your frontend interviews with interactive exercises and real-world scenarios.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button size="lg">Get Started</Button>
-          <Button size="lg" variant="outline">Browse Topics</Button>
+          <Link href="/get-started">
+            <Button size="lg">Get Started</Button>
+          </Link>
+          <Link href="#topics">
+            <Button size="lg" variant="outline">Browse Topics</Button>
+          </Link>
         </div>
 
         {/* Topics Section */}
-        <div className="pt-8">
+        <div className="pt-8" id="topics">
           <h2 className="text-2xl font-semibold mb-6">Practice Topics</h2>
           <Topics />
         </div>

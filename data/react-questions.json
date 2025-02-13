@@ -81,9 +81,61 @@
       "id": "error-boundaries",
       "type": "text",
       "question": "What are Error Boundaries in React and how do you implement them?",
-      "answer": "Error Boundaries are React components that catch JavaScript errors anywhere in their child component tree and handle them gracefully. They:\n\n1. Must be class components\n2. Implement either componentDidCatch() or static getDerivedStateFromError()\n\nExample implementation:\nclass ErrorBoundary extends React.Component {\n  state = { hasError: false };\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    logErrorToService(error, errorInfo);\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n    return this.props.children;\n  }\n}",
+      "answer": "Error Boundaries are React components that catch JavaScript errors anywhere in their child component tree and handle them gracefully. They:\n\n1. Must be class components\n2. Implement either componentDidCatch() or static getDerivedStateFromError()\n\nExample implementation:\nclass ErrorBoundary extends React.Component {\n  state = { hasError: false };\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    logErrorToService(error, errorInfo);\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n    return this.props.children;\n  }\n}"
+    },
+    {
+      "id": "react-suspense",
+      "type": "text",
+      "question": "Explain React Suspense and how it changes data fetching in React applications",
+      "answer": "React Suspense is a feature that lets components wait for something before rendering:\n\n1. Key Features:\n- Declarative loading states\n- Automatic race condition handling\n- Coordinated loading states\n- Streaming server rendering\n\n2. Common Use Cases:\n- Code splitting with lazy()\n- Data fetching (experimental)\n- Image/asset loading\n\nExample:\n```jsx\n<Suspense fallback={<Spinner />}>\n  <SlowComponent />\n</Suspense>\n```",
       "difficulty": "advanced",
-      "tags": ["error-handling", "class-components"]
+      "tags": ["suspense", "performance"]
+    },
+    {
+      "id": "react-server-components",
+      "type": "multiple-choice",
+      "question": "What is the main advantage of React Server Components?",
+      "options": [
+        "They reduce bundle size by executing components on the server",
+        "They improve SEO by rendering on the server",
+        "They provide better error handling",
+        "They enable real-time updates"
+      ],
+      "correctAnswer": 0,
+      "explanation": "React Server Components reduce JavaScript bundle size by executing components on the server and sending only the minimal necessary HTML to the client. They:\n- Keep large dependencies server-side\n- Reduce client-side JavaScript\n- Maintain component model\n- Enable direct backend access\n- Improve initial page load",
+      "difficulty": "advanced",
+      "tags": ["server-components", "performance"]
+    },
+    {
+      "id": "react-patterns",
+      "type": "text",
+      "question": "Explain the Compound Components pattern in React and when to use it",
+      "answer": "Compound Components is a pattern where components are designed to work together while sharing implicit state:\n\nBenefits:\n- Flexible component composition\n- Encapsulated state management\n- Intuitive API\n- Maintainable code structure\n\nExample:\n```jsx\n<Select>\n  <Select.Trigger>Choose option</Select.Trigger>\n  <Select.Options>\n    <Select.Option value=\"1\">Option 1</Select.Option>\n    <Select.Option value=\"2\">Option 2</Select.Option>\n  </Select.Options>\n</Select>\n```\n\nImplementation uses React.Context for state sharing between components.",
+      "difficulty": "advanced",
+      "tags": ["patterns", "component-design"]
+    },
+    {
+      "id": "react-concurrent",
+      "type": "multiple-choice",
+      "question": "Which React feature enables concurrent rendering?",
+      "options": [
+        "useTransition hook",
+        "useState hook",
+        "useEffect hook",
+        "useMemo hook"
+      ],
+      "correctAnswer": 0,
+      "explanation": "useTransition enables concurrent rendering by:\n- Marking state updates as non-urgent\n- Allowing interruption of renders\n- Maintaining UI responsiveness\n- Providing loading indicators\n- Supporting time-slicing",
+      "difficulty": "advanced",
+      "tags": ["concurrent", "performance"]
+    },
+    {
+      "id": "react-optimization",
+      "type": "text",
+      "question": "Describe different techniques for optimizing React component performance",
+      "answer": "React Performance Optimization Techniques:\n\n1. Component Level:\n- React.memo for pure components\n- useMemo for expensive calculations\n- useCallback for stable callbacks\n- Virtual list for long lists (react-window)\n\n2. State Management:\n- Local state when possible\n- State colocation\n- Avoid prop drilling\n- Consider state machines\n\n3. Rendering:\n- Code splitting (lazy, Suspense)\n- Debouncing/throttling events\n- Keys for dynamic lists\n- Avoid inline object creation\n\n4. Development Tools:\n- React DevTools Profiler\n- Performance monitoring\n- Bundle analysis",
+      "difficulty": "advanced",
+      "tags": ["performance", "optimization"]
     }
   ]
 }
