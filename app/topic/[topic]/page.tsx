@@ -13,7 +13,7 @@ async function getTopicQuestions(topicId: string): Promise<QuestionsData> {
   try {
     const questions = await import(`@/data/${topic.questionsFile}`)
     return questions.default || questions
-  } catch (error) {
+  } catch {
     return notFound()
   }
 }

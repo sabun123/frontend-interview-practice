@@ -19,7 +19,7 @@ export default function GetStarted() {
         <div className="prose dark:prose-invert max-w-none">
           <h2>How to Use This Platform</h2>
           <p className="text-lg text-muted-foreground">
-            Welcome to Frontend Interview Practice! Here's how to make the most of your preparation:
+            Welcome to Frontend Interview Practice! Here&apos;s how to make the most of your preparation:
           </p>
           
           <div className="grid gap-6 mt-6">
@@ -29,7 +29,7 @@ export default function GetStarted() {
                 We recommend starting with these topics in order:
               </p>
               <ol className="space-y-2">
-                {topics.topics.map((topic, index) => (
+                {topics.topics.map((topic) => (
                   <li key={topic.id} className="text-muted-foreground">
                     <Link href={`/topic/${topic.id}`} className="hover:text-primary">
                       {topic.name} - {topic.description}
@@ -71,3 +71,4 @@ export default function GetStarted() {
       </div>
     </div>
   )
+}
