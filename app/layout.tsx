@@ -10,6 +10,20 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Frontend Interview Practice",
   description: "Practice your frontend interview skills",
+  icons: {
+    icon: [
+      {
+        url: "/code-brackets.ico",
+        sizes: "any",
+      },
+    ],
+    apple: [
+      {
+        url: "/code-brackets-apple.png",
+        sizes: "180x180",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

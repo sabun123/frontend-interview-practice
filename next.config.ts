@@ -5,6 +5,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Ensure our favicon and apple touch icon are included in the build
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(ico|png)$/,
+      type: 'asset/resource',
+    })
+    return config
+  },
 }
 
 export default nextConfig
