@@ -15,7 +15,7 @@ export default function Home() {
             <Button size="lg">Get Started</Button>
           </Link>
           <Link href="/quick-study">
-            <Button size="lg" variant="outline" className="bg-purple-50 hover:bg-purple-100">
+            <Button size="lg" variant="outline" className="bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/20 dark:hover:bg-purple-900/30 dark:text-purple-100">
               Quick Study Mode
             </Button>
           </Link>
