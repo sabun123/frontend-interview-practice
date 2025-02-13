@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: 'standalone',
   basePath: process.env.NODE_ENV === 'production' ? '/frontend-interview-practice' : '',
   images: {
     unoptimized: true,
