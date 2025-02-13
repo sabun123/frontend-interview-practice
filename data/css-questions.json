@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id": "flexbox-grid",
+      "question": "Compare Flexbox and Grid layouts. When would you use one over the other?",
+      "answer": "Flexbox and Grid have different use cases:\nFlexbox:\n- Best for one-dimensional layouts (row OR column)\n- Great for distributing space among items\n- Ideal for navigation bars and component alignment\n\nGrid:\n- Perfect for two-dimensional layouts (rows AND columns)\n- Better for overall page layouts\n- Excellent for complex grid-based designs\n\nUse Flexbox for component-level layouts and Grid for page-level layouts.",
+      "difficulty": "intermediate",
+      "tags": ["layout", "flexbox", "grid"]
+    },
+    {
+      "id": "css-animations",
+      "question": "Explain CSS animations and their performance implications",
+      "answer": "CSS animations allow smooth transitions and keyframe-based animations:\n- Use transform and opacity for best performance\n- These properties don't trigger layout/paint\n- Hardware acceleration via transform3d or will-change\n- RequestAnimationFrame for JS animations\n- Avoid animating layout properties like width/height",
+      "difficulty": "intermediate",
+      "tags": ["animations", "performance"]
+    }
+  ]
+}

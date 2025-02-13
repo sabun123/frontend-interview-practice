@@ -1,5 +1,6 @@
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
+import { Topics } from "@/components/topics"
 
 export default function Home() {
   return (
@@ -24,15 +25,10 @@ export default function Home() {
             <Button size="lg" variant="outline">Browse Topics</Button>
           </div>
 
-          {/* Featured Topics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
-            {/* Topic Cards */}
-            {['JavaScript Fundamentals', 'React Patterns', 'System Design'].map((topic) => (
-              <div key={topic} className="p-6 border rounded-lg">
-                <h3 className="font-semibold mb-2">{topic}</h3>
-                <p className="text-muted-foreground">Practice essential concepts and common interview questions.</p>
-              </div>
-            ))}
+          {/* Topics Section */}
+          <div className="pt-8">
+            <h2 className="text-2xl font-semibold mb-6">Practice Topics</h2>
+            <Topics />
           </div>
         </section>
       </main>

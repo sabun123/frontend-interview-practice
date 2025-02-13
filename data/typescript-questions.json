@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id": "typescript-types",
+      "question": "What are the differences between interfaces and types in TypeScript?",
+      "answer": "Interfaces and types have several key differences:\n- Interfaces are extensible through declaration merging, types are not\n- Interfaces can only describe object shapes, while types can also define unions, primitives, and tuples\n- Types are more flexible for complex types like mapped types and conditional types\n- Interfaces are generally preferred when defining object shapes for better error messages",
+      "difficulty": "intermediate",
+      "tags": ["types", "interfaces"]
+    },
+    {
+      "id": "generics",
+      "question": "Explain TypeScript generics and their use cases",
+      "answer": "Generics allow you to write flexible, reusable code that works with multiple types while maintaining type safety. Common use cases include:\n- Creating type-safe collections\n- Building flexible components that work with different data types\n- Writing utility functions that preserve type information\n- Implementing generic interfaces and classes",
+      "difficulty": "intermediate",
+      "tags": ["generics", "type-safety"]
+    }
+  ]
+}

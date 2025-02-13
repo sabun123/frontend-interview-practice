@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id": "semantic-html",
+      "question": "What are semantic HTML elements and why are they important?",
+      "answer": "Semantic HTML elements provide meaning to the structure of web content:\n- Improves accessibility for screen readers\n- Better SEO optimization\n- Clearer code organization\n\nKey elements include:\n- <header>, <nav>, <main>, <article>\n- <section>, <aside>, <footer>\n- <figure>, <figcaption>\n- <time>, <mark>, <details>",
+      "difficulty": "beginner",
+      "tags": ["semantics", "accessibility"]
+    },
+    {
+      "id": "html5-apis",
+      "question": "Explain key HTML5 APIs and their use cases",
+      "answer": "HTML5 introduced several powerful APIs:\n1. LocalStorage/SessionStorage\n- Client-side data storage\n- Key-value pair system\n\n2. Canvas/WebGL\n- 2D/3D graphics rendering\n- Game development\n\n3. Web Workers\n- Background processing\n- Multi-threading\n\n4. Geolocation\n- Location-based services\n- Maps integration",
+      "difficulty": "intermediate",
+      "tags": ["apis", "web-platform"]
+    }
+  ]
+}

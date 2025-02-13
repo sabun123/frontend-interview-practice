@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id": "react-hooks",
+      "question": "Explain React Hooks and their advantages over class components.",
+      "answer": "React Hooks are functions that allow you to use state and other React features in functional components. Key advantages include:\n- Simpler code organization\n- Reuse of stateful logic\n- Avoiding wrapper hell from render props and HOCs\n- Avoiding confusion with 'this' binding\n\nCommon hooks include useState, useEffect, useContext, and useRef.",
+      "difficulty": "intermediate",
+      "tags": ["hooks", "functional-components"]
+    },
+    {
+      "id": "virtual-dom",
+      "question": "What is the Virtual DOM and how does it work?",
+      "answer": "The Virtual DOM is a lightweight copy of the actual DOM that React maintains in memory. When state changes occur:\n1. React creates a new Virtual DOM tree\n2. Compares it with the previous Virtual DOM (diffing)\n3. Calculates the minimum number of changes needed\n4. Updates the actual DOM only where necessary\n\nThis process optimizes performance by reducing expensive DOM operations.",
+      "difficulty": "beginner",
+      "tags": ["fundamentals", "performance"]
+    }
+  ]
+}
