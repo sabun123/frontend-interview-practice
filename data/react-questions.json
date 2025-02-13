@@ -81,7 +81,9 @@
       "id": "error-boundaries",
       "type": "text",
       "question": "What are Error Boundaries in React and how do you implement them?",
-      "answer": "Error Boundaries are React components that catch JavaScript errors anywhere in their child component tree and handle them gracefully. They:\n\n1. Must be class components\n2. Implement either componentDidCatch() or static getDerivedStateFromError()\n\nExample implementation:\nclass ErrorBoundary extends React.Component {\n  state = { hasError: false };\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    logErrorToService(error, errorInfo);\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n    return this.props.children;\n  }\n}"
+      "answer": "Error Boundaries are React components that catch JavaScript errors anywhere in their child component tree and handle them gracefully. They:\n\n1. Must be class components\n2. Implement either componentDidCatch() or static getDerivedStateFromError()\n\nExample implementation:\nclass ErrorBoundary extends React.Component {\n  state = { hasError: false };\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    logErrorToService(error, errorInfo);\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n    return this.props.children;\n  }\n}",
+      "difficulty": "advanced",
+      "tags": ["error-handling", "class-components"]
     },
     {
       "id": "react-suspense",

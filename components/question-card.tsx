@@ -33,12 +33,12 @@ export function QuestionCard({ question }: { question: Question }) {
       </div>
       
       <div className="flex flex-wrap gap-2">
-        {question.tags.map((tag) => (
+        {question.tags?.map((tag) => (
           <span key={tag} className="flex items-center gap-1 text-sm text-muted-foreground bg-muted px-2 py-1 rounded-md">
             <Tag className="h-3 w-3" />
             {tag}
           </span>
-        ))}
+        )) || null}
       </div>
 
       {question.type === 'multiple-choice' && (
