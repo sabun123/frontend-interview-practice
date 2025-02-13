@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "lint-check": "eslint \"components/**/*.{js,jsx,ts,tsx}\" \"app/**/*.{js,jsx,ts,tsx}\" \"lib/**/*.{js,jsx,ts,tsx}\" \"types/**/*.{js,jsx,ts,tsx}\"",
+    "check": "npm run type-check && npm run lint-check"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
