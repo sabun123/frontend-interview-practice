@@ -1,0 +1,184 @@
+{
+  "questions": [
+    {
+      "id": "nextjs-app-router",
+      "type": "multiple-choice",
+      "question": "What is the main difference between pages/ and app/ directories in Next.js 13+?",
+      "options": [
+        "app/ supports both client and server components while pages/ is client-only",
+        "pages/ supports both client and server components while app/ is server-only",
+        "app/ is for static pages while pages/ is for dynamic pages",
+        "They are exactly the same, just different naming conventions"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The app/ directory (App Router) differs from pages/ because:\n- Server Components by default\n- Nested routing and layouts\n- Streaming and Suspense support\n- Colocated components and files\n- Enhanced data fetching capabilities",
+      "difficulty": "intermediate",
+      "tags": ["routing", "app-router"]
+    },
+    {
+      "id": "nextjs-server-components",
+      "type": "multiple-choice",
+      "question": "What is NOT a benefit of React Server Components in Next.js?",
+      "options": [
+        "Reduced client-side JavaScript",
+        "Direct database access",
+        "Client-side state management",
+        "Automatic code splitting"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Server Components can't handle client-side state management because:\n- They run only on the server\n- Can't use hooks like useState\n- Can't handle browser events\n- No access to browser APIs\nClient Components should be used for interactive features.",
+      "difficulty": "intermediate",
+      "tags": ["server-components", "performance"]
+    },
+    {
+      "id": "nextjs-data-fetching",
+      "type": "multiple-choice",
+      "question": "Which data fetching pattern provides the best caching strategy in Next.js 13+?",
+      "options": [
+        "getServerSideProps()",
+        "fetch() with cache: 'force-cache'",
+        "useEffect with axios",
+        "getStaticProps()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "fetch() with cache: 'force-cache' is preferred because:\n- Built-in caching mechanism\n- Works in Server Components\n- Supports revalidation\n- More flexible than older methods\n- Automatic deduplication of requests",
+      "difficulty": "advanced",
+      "tags": ["data-fetching", "caching"]
+    },
+    {
+      "id": "nextjs-streaming",
+      "type": "multiple-choice",
+      "question": "What's the correct way to implement streaming in Next.js?",
+      "options": [
+        "Wrap components in <Stream>",
+        "Use loading.tsx files",
+        "Add streaming prop to pages",
+        "Enable streaming in next.config.js"
+      ],
+      "correctAnswer": 1,
+      "explanation": "loading.tsx files enable streaming because:\n- Automatic suspense boundary creation\n- Instant loading states\n- Progressive rendering\n- Works with parallel routes\n- Built-in error handling",
+      "difficulty": "intermediate",
+      "tags": ["streaming", "loading-states"]
+    },
+    {
+      "id": "nextjs-rendering",
+      "type": "multiple-choice",
+      "question": "Which dynamic rendering approach allows per-request caching in Next.js?",
+      "options": [
+        "Dynamic segments with generateStaticParams",
+        "Route handlers with Response.json()",
+        "Server Components with unstable_cache",
+        "Pages with getServerSideProps"
+      ],
+      "correctAnswer": 2,
+      "explanation": "unstable_cache provides:\n- Per-request caching\n- Customizable cache duration\n- Revalidation options\n- Tag-based invalidation\n- Integration with fetch cache",
+      "difficulty": "advanced",
+      "tags": ["caching", "performance"]
+    },
+    {
+      "id": "nextjs-metadata",
+      "type": "multiple-choice",
+      "question": "What's the recommended way to handle dynamic metadata in Next.js 13+?",
+      "options": [
+        "Use next/head component",
+        "Export generateMetadata function",
+        "Add meta tags in RootLayout",
+        "Configure in next.config.js"
+      ],
+      "correctAnswer": 1,
+      "explanation": "generateMetadata is preferred because:\n- Supports async data fetching\n- Colocated with routes\n- TypeScript support\n- Automatic optimization\n- SEO-friendly defaults",
+      "difficulty": "intermediate",
+      "tags": ["seo", "metadata"]
+    },
+    {
+      "id": "nextjs-middleware",
+      "type": "multiple-choice",
+      "question": "Where should middleware.ts be placed in a Next.js 13+ project?",
+      "options": [
+        "In the app directory",
+        "In the src directory",
+        "In the root directory",
+        "In the pages directory"
+      ],
+      "correctAnswer": 2,
+      "explanation": "middleware.ts should be in the root because:\n- Automatically detected by Next.js\n- Runs before any route matching\n- Applies to all routes\n- Easier configuration\n- Better performance",
+      "difficulty": "intermediate",
+      "tags": ["middleware", "configuration"]
+    },
+    {
+      "id": "nextjs-optimization",
+      "type": "multiple-choice",
+      "question": "Which built-in Next.js feature automatically optimizes images?",
+      "options": [
+        "<Image> component from next/image",
+        "<img> with loading=\"lazy\"",
+        "<Picture> component",
+        "Automatic image imports"
+      ],
+      "correctAnswer": 0,
+      "explanation": "next/image provides:\n- Automatic optimization\n- Lazy loading\n- Blur placeholder\n- Size optimization\n- WebP/AVIF conversion",
+      "difficulty": "beginner",
+      "tags": ["images", "optimization"]
+    },
+    {
+      "id": "nextjs-parallel-routes",
+      "type": "multiple-choice",
+      "question": "How do you implement parallel routes in Next.js 13+?",
+      "options": [
+        "Using the @ prefix in folder names",
+        "Adding multiple page.tsx files",
+        "Using Link components with parallel prop",
+        "Configuring parallel routes in next.config.js"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Parallel routes use @ prefix because:\n- Allows independent loading states\n- Enables simultaneous route rendering\n- Maintains independent error boundaries\n- Supports conditional rendering\n- Perfect for complex UIs like dashboards",
+      "difficulty": "advanced",
+      "tags": ["routing", "patterns"]
+    },
+    {
+      "id": "nextjs-intercepting-routes",
+      "type": "multiple-choice",
+      "question": "What's the correct pattern for creating modal routes in Next.js 13+?",
+      "options": [
+        "Using (..) directory notation",
+        "Adding modal.tsx in each route",
+        "Using <Modal> component with routes",
+        "Configuring modals in next.config.js"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Intercepting routes with (..) allow:\n- Modal-style route overlays\n- Preserved background context\n- Clean URLs for sharing\n- Proper browser history\n- Seamless UX patterns",
+      "difficulty": "advanced",
+      "tags": ["routing", "ux"]
+    },
+    {
+      "id": "nextjs-error-handling",
+      "type": "multiple-choice",
+      "question": "What's the best way to handle route-specific errors in Next.js 13+?",
+      "options": [
+        "Create an error.tsx file in the route segment",
+        "Use try-catch in page.tsx",
+        "Add global error handling middleware",
+        "Implement ErrorBoundary component"
+      ],
+      "correctAnswer": 0,
+      "explanation": "error.tsx files provide:\n- Route-specific error handling\n- Automatic error boundary creation\n- Access to error details\n- Clean fallback UI\n- Preserved layout structure",
+      "difficulty": "intermediate",
+      "tags": ["error-handling", "patterns"]
+    },
+    {
+      "id": "nextjs-route-handlers",
+      "type": "multiple-choice",
+      "question": "Which feature of Route Handlers in Next.js 13+ is NOT correct?",
+      "options": [
+        "They support streaming responses",
+        "They can use React hooks",
+        "They can be nested in app directory",
+        "They support form submissions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Route Handlers cannot use React hooks because:\n- They are not React components\n- Run in Edge or Node.js runtime\n- Handle raw HTTP requests\n- Designed for API functionality\nUse Server Components instead for React features.",
+      "difficulty": "advanced",
+      "tags": ["api", "backend"]
+    }
+  ]
+}

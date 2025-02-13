@@ -34,6 +34,13 @@
       "icon": "code-2",
       "description": "Modern HTML features and semantics",
       "questionsFile": "html-questions.json"
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "icon": "server",
+      "description": "Server-side rendering and modern React frameworks",
+      "questionsFile": "nextjs-questions.json"
     }
   ]
 }

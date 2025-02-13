@@ -138,6 +138,66 @@
       "answer": "React Performance Optimization Techniques:\n\n1. Component Level:\n- React.memo for pure components\n- useMemo for expensive calculations\n- useCallback for stable callbacks\n- Virtual list for long lists (react-window)\n\n2. State Management:\n- Local state when possible\n- State colocation\n- Avoid prop drilling\n- Consider state machines\n\n3. Rendering:\n- Code splitting (lazy, Suspense)\n- Debouncing/throttling events\n- Keys for dynamic lists\n- Avoid inline object creation\n\n4. Development Tools:\n- React DevTools Profiler\n- Performance monitoring\n- Bundle analysis",
       "difficulty": "advanced",
       "tags": ["performance", "optimization"]
+    },
+    {
+      "id": "react-refs",
+      "type": "multiple-choice",
+      "question": "When is it appropriate to use refs in React?",
+      "options": [
+        "To directly manipulate child DOM elements",
+        "To store component state that triggers re-renders",
+        "To share state between components",
+        "To optimize component rendering"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Refs should primarily be used for direct DOM manipulation (like focusing inputs or measuring elements), animations, or integrating with third-party DOM libraries. They should not be used for state management or data flow, which should rely on props and state instead.",
+      "difficulty": "intermediate",
+      "tags": ["refs", "DOM", "best-practices"]
+    },
+    {
+      "id": "react-props-state",
+      "type": "multiple-choice",
+      "question": "What is the key difference between props and state in React?",
+      "options": [
+        "Props are internal while state is external",
+        "Props are read-only while state can be updated",
+        "Props are faster while state is slower",
+        "Props are for styling while state is for data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Props (properties) are read-only and passed from parent to child components, while state is managed internally by a component and can be updated using setState or useState. Props represent external configuration, while state represents internal component data.",
+      "difficulty": "beginner",
+      "tags": ["props", "state", "fundamentals"]
+    },
+    {
+      "id": "react-useeffect-deps",
+      "type": "multiple-choice",
+      "question": "What happens if you omit the dependency array in useEffect?",
+      "options": [
+        "The effect runs after every render",
+        "The effect never runs",
+        "The effect runs only once",
+        "The effect runs only on mount and unmount"
+      ],
+      "correctAnswer": 0,
+      "explanation": "When the dependency array is omitted (not passing [] as second argument), the effect will run after every render of the component. This is different from an empty dependency array [], which makes the effect run only once on mount.",
+      "difficulty": "intermediate",
+      "tags": ["hooks", "useEffect"]
+    },
+    {
+      "id": "react-memo-use",
+      "type": "multiple-choice",
+      "question": "When should you NOT use React.memo?",
+      "options": [
+        "When the component frequently receives different props",
+        "When the component is very simple",
+        "When the component contains complex logic",
+        "When the component has many child elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "You should not use React.memo for simple components because the overhead of comparing props might be more expensive than just re-rendering the component. React.memo is most beneficial for complex components that receive the same props often but are re-rendering due to parent updates.",
+      "difficulty": "advanced",
+      "tags": ["optimization", "performance"]
     }
   ]
 }

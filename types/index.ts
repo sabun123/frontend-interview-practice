@@ -1,7 +1,9 @@
+export type TopicIcon = 'code' | 'file-type' | 'layout' | 'package' | 'code-2' | 'server';
+
 export interface Topic {
   id: string;
   name: string;
-  icon: string;
+  icon: TopicIcon;
   description: string;
   questionsFile: string;
 }

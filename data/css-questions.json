@@ -76,6 +76,81 @@
       "explanation": "BEM is ideal for large applications because:\n- Provides clear, strict naming conventions\n- Makes CSS more maintainable and predictable\n- Reduces style conflicts and specificity issues\n- Improves collaboration in large teams\n- Makes components more reusable\n\nExample: .block__element--modifier",
       "difficulty": "intermediate",
       "tags": ["methodology", "best-practices", "architecture"]
+    },
+    {
+      "id": "css-position",
+      "type": "multiple-choice",
+      "question": "Which positioning context does position: sticky use?",
+      "options": [
+        "Only the viewport",
+        "The nearest scrolling ancestor or viewport",
+        "Only the immediate parent",
+        "The closest positioned parent"
+      ],
+      "correctAnswer": 1,
+      "explanation": "position: sticky creates a positioning context relative to the nearest scrolling ancestor (element with overflow other than visible) or the viewport if no scrolling ancestor exists. This allows elements to 'stick' while scrolling within their containing block.",
+      "difficulty": "intermediate",
+      "tags": ["positioning", "layout"]
+    },
+    {
+      "id": "css-cascade-layers",
+      "type": "multiple-choice",
+      "question": "What is the correct order of precedence in CSS cascade layers?",
+      "options": [
+        "Author styles > User styles > Browser styles",
+        "Browser styles > User styles > Author styles",
+        "User !important > Author !important > Author > User > Browser",
+        "Author !important > User !important > Browser !important > Author > User > Browser"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The cascade order from highest to lowest precedence is: User !important styles, Author !important styles, Author normal styles, User normal styles, and Browser default styles. This ensures users can override author styles when needed while maintaining sensible defaults.",
+      "difficulty": "advanced",
+      "tags": ["cascade", "specificity"]
+    },
+    {
+      "id": "css-container-queries",
+      "type": "multiple-choice",
+      "question": "What is the main advantage of container queries over media queries?",
+      "options": [
+        "They are faster to process",
+        "They respond to the container size rather than viewport size",
+        "They work better with JavaScript",
+        "They support more CSS properties"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Container queries allow components to adapt based on their container's size rather than the viewport size. This makes components more reusable as they can respond to their immediate context, regardless of where they're placed in the layout.",
+      "difficulty": "advanced",
+      "tags": ["responsive", "layout"]
+    },
+    {
+      "id": "css-stacking-context",
+      "type": "multiple-choice",
+      "question": "Which property does NOT create a new stacking context?",
+      "options": [
+        "position: relative",
+        "opacity: 0.99",
+        "transform: scale(1)",
+        "isolation: isolate"
+      ],
+      "correctAnswer": 0,
+      "explanation": "position: relative alone does not create a new stacking context. The other options all create stacking contexts: opacity less than 1, any transform value, and isolation: isolate. Understanding stacking contexts is crucial for managing z-index and layer rendering.",
+      "difficulty": "advanced",
+      "tags": ["stacking-context", "z-index"]
+    },
+    {
+      "id": "css-logical-properties",
+      "type": "multiple-choice",
+      "question": "What is the logical property equivalent of margin-left in a horizontal writing mode?",
+      "options": [
+        "margin-inline-start",
+        "margin-block-start",
+        "margin-inline-end",
+        "margin-block-end"
+      ],
+      "correctAnswer": 0,
+      "explanation": "margin-inline-start is the logical equivalent of margin-left in horizontal writing modes. Logical properties adapt to the writing mode and direction, making internationalization easier. For vertical writing modes, it would correspond to the start edge of the inline axis.",
+      "difficulty": "intermediate",
+      "tags": ["logical-properties", "internationalization"]
     }
   ]
 }

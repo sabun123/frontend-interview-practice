@@ -1,16 +1,18 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Code, FileType, Layout, Package, Code2 } from "lucide-react"
+import { Code, FileType, Layout, Package, Code2, Server, LucideIcon } from "lucide-react"
 import topics from "@/data/topics.json"
 import { useRouter } from "next/navigation"
+import { TopicIcon, Topic } from "@/types"
 
-const iconMap = {
+const iconMap: Record<TopicIcon, LucideIcon> = {
   code: Code,
   "file-type": FileType,
   layout: Layout,
   package: Package,
   "code-2": Code2,
+  server: Server,
 }
 
 export function Topics() {
@@ -18,8 +20,8 @@ export function Topics() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-      {topics.topics.map((topic) => {
-        const Icon = iconMap[topic.icon as keyof typeof iconMap]
+      {(topics.topics as Topic[]).map((topic) => {
+        const Icon = iconMap[topic.icon as TopicIcon] || Code // Fallback to Code icon if not found
         return (
           <Button
             key={topic.id}
