@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, Coffee } from "lucide-react"
 import { Button } from "./ui/button"
 
 export function Footer() {
@@ -32,6 +32,16 @@ export function Footer() {
           >
             <a href="https://github.com/sabun123" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="h-5 w-5" />
+            </a>
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="transition-transform hover:scale-110 hover:text-[#FFDD00] active:scale-95"
+            asChild
+          >
+            <a href="https://buymeacoffee.com/yusufismail" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+              <Coffee className="h-5 w-5" />
             </a>
           </Button>
         </div>
