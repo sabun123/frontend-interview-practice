@@ -128,15 +128,19 @@ export function QuickStudyComponent() {
   const handleAnswerSelect = (optionIndex: number) => {
     if (currentQuestion.answered) return;
 
+    const isCorrect = optionIndex === currentQuestion.question.correctAnswer;
+
     setQuestions(prev => {
       const newQuestions = [...prev];
-      newQuestions[currentQuestionIndex].answered = true;
-      newQuestions[currentQuestionIndex].selectedAnswer = optionIndex;
-      
-      if (optionIndex === currentQuestion.question.correctAnswer) {
-        setScore(prev => prev + 1);
+      // Only update if the question hasn't been answered yet
+      if (!newQuestions[currentQuestionIndex].answered) {
+        newQuestions[currentQuestionIndex].answered = true;
+        newQuestions[currentQuestionIndex].selectedAnswer = optionIndex;
+        
+        if (isCorrect) {
+          setScore(prev => prev + 1);
+        }
       }
-      
       return newQuestions;
     });
 
