@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="container mx-auto px-4 py-8">
       <section className="space-y-6">
-        <h1 className="text-4xl font-bold tracking-tight">Welcome to Frontend Interview Practice</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Study smart with self-testing!</h1>
         <p className="text-lg text-muted-foreground">
           Prepare for your frontend interviews with interactive exercises and real-world scenarios.
         </p>
