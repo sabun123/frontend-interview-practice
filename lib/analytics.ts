@@ -1,6 +1,17 @@
+interface GTagEvent {
+  action: string;
+  category: string;
+  label: string;
+  value?: number;
+}
+
 type WindowWithDataLayer = Window & {
-  dataLayer: Record<string, any>[];
-  gtag: (...args: any[]) => void;
+  dataLayer: Array<Record<string, unknown>>;
+  gtag: (
+    command: 'config' | 'event',
+    targetId: string,
+    config: Record<string, unknown>
+  ) => void;
 };
 
 declare const window: WindowWithDataLayer;
@@ -15,12 +26,7 @@ export const pageview = (url: string) => {
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: {
-  action: string;
-  category: string;
-  label: string;
-  value?: number;
-}) => {
+export const event = ({ action, category, label, value }: GTagEvent) => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
