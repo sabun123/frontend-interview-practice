@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Temporarily removing static export to test metadata handling
-  // output: "export",
-  // basePath: process.env.NODE_ENV === "production" ? "/frontend-interview-practice" : "",
+  // Static export to deploy to Github Pages
+  output: "export",
+  basePath:
+    process.env.NODE_ENV === "production" ? "/frontend-interview-practice" : "",
   images: {
     unoptimized: true,
     domains: [],
