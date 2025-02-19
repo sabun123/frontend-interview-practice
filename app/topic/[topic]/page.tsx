@@ -1,59 +1,55 @@
-import { QuestionCard } from "@/components/question-card"
-import { Button } from "@/components/ui/button"
-import topics from "@/data/topics.json"
-import { QuestionsData, Topic } from "@/types"
-import { ChevronLeft } from "lucide-react"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import type { Metadata } from 'next'
+import { QuestionCard } from "@/components/question-card";
+import { Button } from "@/components/ui/button";
+import { QuestionsData } from "@/types";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { topicsData } from "@/app/data/topics";
 
-type TopicPageParams = Promise<{
-  topic: string
-}>;
-
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: TopicPageParams 
-}): Promise<Metadata> {
-  const { topic: paramsTopic } = await params;
-  const topic = (topics.topics as Topic[]).find((t) => t.id === paramsTopic);
-  if (!topic) return { title: 'Not Found' }
-  return { title: topic.name }
+interface TopicPageProps {
+  params: Promise<{
+    topic: string;
+  }>;
 }
 
-export async function generateStaticParams(): Promise<{ topic: string }[]> {
+export async function generateMetadata({
+  params,
+}: TopicPageProps): Promise<Metadata> {
+  const { topic: topicId } = await params;
+  const topic = topicsData.topics.find((t) => t.id === topicId);
+  if (!topic) return { title: "Not Found" };
+  return {
+    title: topic.name,
+    description: topic.description,
+  };
+}
 
-  return Promise.resolve(
-    (topics.topics as Topic[]).map((topic) => ({
-      topic: topic.id,
-    }))
-  )
+export function generateStaticParams() {
+  return topicsData.topics.map((topic) => ({
+    topic: topic.id,
+  }));
 }
 
 async function getTopicQuestions(topicId: string): Promise<QuestionsData> {
-  const topic = (topics.topics as Topic[]).find((t) => t.id === topicId);
-  if (!topic) return notFound();
+  const topic = topicsData.topics.find((t) => t.id === topicId);
+  if (!topic) throw notFound();
 
   try {
-    const questions = await import(`@/data/${topic.questionsFile}`);
-    return questions.default || questions;
-  } catch {
-    return notFound();
+    const questionFile = await import(`@/public/data/${topic.questionsFile}`);
+    return questionFile.default as QuestionsData;
+  } catch (error) {
+    console.error("Error loading questions:", error);
+    throw notFound();
   }
 }
 
-export default async function TopicPage({ 
-  params 
-}: { 
-  params: TopicPageParams 
-}) {
-  const { topic: paramTopic } = await params;
-
-  const questions = await getTopicQuestions(paramTopic)
-  const topic = (topics.topics as Topic[]).find((t) => t.id === paramTopic);
-
+export default async function TopicPage({ params }: TopicPageProps) {
+  const { topic: topicId } = await params;
+  const topic = topicsData.topics.find((t) => t.id === topicId);
   if (!topic) return notFound();
+
+  const questions = await getTopicQuestions(topicId);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -79,5 +75,5 @@ export default async function TopicPage({
         </div>
       </div>
     </div>
-  )
+  );
 }

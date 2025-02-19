@@ -1,0 +1,156 @@
+{
+  "questions": [
+    {
+      "id": "flexbox-grid",
+      "type": "text",
+      "question": "Compare Flexbox and Grid layouts. When would you use one over the other?",
+      "answer": "Flexbox and Grid have different use cases:\nFlexbox:\n- Best for one-dimensional layouts (row OR column)\n- Great for distributing space among items\n- Ideal for navigation bars and component alignment\n\nGrid:\n- Perfect for two-dimensional layouts (rows AND columns)\n- Better for overall page layouts\n- Excellent for complex grid-based designs\n\nUse Flexbox for component-level layouts and Grid for page-level layouts.",
+      "difficulty": "intermediate",
+      "tags": ["layout", "flexbox", "grid"]
+    },
+    {
+      "id": "css-animations",
+      "type": "text",
+      "question": "Explain CSS animations and their performance implications",
+      "answer": "CSS animations allow smooth transitions and keyframe-based animations:\n- Use transform and opacity for best performance\n- These properties don't trigger layout/paint\n- Hardware acceleration via transform3d or will-change\n- RequestAnimationFrame for JS animations\n- Avoid animating layout properties like width/height",
+      "difficulty": "intermediate",
+      "tags": ["animations", "performance"]
+    },
+    {
+      "id": "css-specificity",
+      "type": "multiple-choice",
+      "question": "Which CSS selector has the highest specificity?",
+      "options": [
+        ".header nav.menu",
+        "#header .nav",
+        "header nav[role='navigation']",
+        "body header nav"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ID selectors (#) have the highest specificity (100), followed by class selectors (10), and tag selectors (1). In this case:\n#header .nav = 100 + 10 = 110\n.header nav.menu = 10 + 1 + 10 = 21\nheader nav[role='navigation'] = 1 + 1 + 10 = 12\nbody header nav = 1 + 1 + 1 = 3",
+      "difficulty": "intermediate",
+      "tags": ["selectors", "specificity"]
+    },
+    {
+      "id": "css-variables",
+      "type": "text",
+      "question": "Explain CSS Custom Properties (CSS Variables) and their advantages over preprocessor variables",
+      "answer": "CSS Custom Properties advantages:\n\n1. Dynamic Updates:\n- Can be modified with JavaScript\n- React to media queries\n- Update without page reload\n\n2. Cascade and Inheritance:\n- Follow the CSS cascade\n- Can be scoped to components\n- Inherit through the DOM tree\n\n3. DevTools Integration:\n- Can be inspected and modified in browser\n- Easier debugging\n\nExample:\n:root {\n  --primary-color: #007bff;\n}\n\n.button {\n  background: var(--primary-color);\n}",
+      "difficulty": "intermediate",
+      "tags": ["variables", "customization"]
+    },
+    {
+      "id": "responsive-images",
+      "type": "multiple-choice",
+      "question": "Which attribute combination provides the best responsive image solution for different screen sizes?",
+      "options": [
+        "<img src='image.jpg' width='100%'>",
+        "<img srcset='small.jpg 300w, medium.jpg 600w, large.jpg 900w' sizes='(max-width: 500px) 300px, (max-width: 900px) 600px, 900px'>",
+        "<picture><source media='(min-width: 800px)' srcset='large.jpg'><img src='small.jpg'></picture>",
+        "<img src='image.jpg' style='max-width: 100%'>"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The srcset and sizes attributes provide the most comprehensive solution because:\n- Browser can choose the most appropriate image size\n- Supports different viewport sizes and pixel densities\n- Allows for automatic resource selection\n- Optimizes bandwidth usage",
+      "difficulty": "advanced",
+      "tags": ["responsive", "images", "optimization"]
+    },
+    {
+      "id": "css-transforms",
+      "type": "text",
+      "question": "Explain 3D transforms in CSS and how to optimize their performance",
+      "answer": "3D Transforms in CSS:\n\n1. Key Properties:\n- transform-style: preserve-3d\n- perspective\n- backface-visibility\n- transform: translate3d(), rotate3d()\n\n2. Performance Optimization:\n- Use transform3d() to trigger GPU acceleration\n- Add will-change for heavy animations\n- Use composite properties (transform, opacity)\n- Avoid triggering layout/paint\n\n3. Best Practices:\n- Group 3D elements in a container\n- Use perspective on parent\n- Handle backface visibility\n- Consider mobile performance",
+      "difficulty": "advanced",
+      "tags": ["3d", "transforms", "performance"]
+    },
+    {
+      "id": "css-methodologies",
+      "type": "multiple-choice",
+      "question": "Which CSS methodology is best suited for large-scale applications?",
+      "options": [
+        "BEM (Block Element Modifier)",
+        "OOCSS (Object-Oriented CSS)",
+        "Atomic CSS",
+        "SMACSS (Scalable and Modular Architecture for CSS)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "BEM is ideal for large applications because:\n- Provides clear, strict naming conventions\n- Makes CSS more maintainable and predictable\n- Reduces style conflicts and specificity issues\n- Improves collaboration in large teams\n- Makes components more reusable\n\nExample: .block__element--modifier",
+      "difficulty": "intermediate",
+      "tags": ["methodology", "best-practices", "architecture"]
+    },
+    {
+      "id": "css-position",
+      "type": "multiple-choice",
+      "question": "Which positioning context does position: sticky use?",
+      "options": [
+        "Only the viewport",
+        "The nearest scrolling ancestor or viewport",
+        "Only the immediate parent",
+        "The closest positioned parent"
+      ],
+      "correctAnswer": 1,
+      "explanation": "position: sticky creates a positioning context relative to the nearest scrolling ancestor (element with overflow other than visible) or the viewport if no scrolling ancestor exists. This allows elements to 'stick' while scrolling within their containing block.",
+      "difficulty": "intermediate",
+      "tags": ["positioning", "layout"]
+    },
+    {
+      "id": "css-cascade-layers",
+      "type": "multiple-choice",
+      "question": "What is the correct order of precedence in CSS cascade layers?",
+      "options": [
+        "Author styles > User styles > Browser styles",
+        "Browser styles > User styles > Author styles",
+        "User !important > Author !important > Author > User > Browser",
+        "Author !important > User !important > Browser !important > Author > User > Browser"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The cascade order from highest to lowest precedence is: User !important styles, Author !important styles, Author normal styles, User normal styles, and Browser default styles. This ensures users can override author styles when needed while maintaining sensible defaults.",
+      "difficulty": "advanced",
+      "tags": ["cascade", "specificity"]
+    },
+    {
+      "id": "css-container-queries",
+      "type": "multiple-choice",
+      "question": "What is the main advantage of container queries over media queries?",
+      "options": [
+        "They are faster to process",
+        "They respond to the container size rather than viewport size",
+        "They work better with JavaScript",
+        "They support more CSS properties"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Container queries allow components to adapt based on their container's size rather than the viewport size. This makes components more reusable as they can respond to their immediate context, regardless of where they're placed in the layout.",
+      "difficulty": "advanced",
+      "tags": ["responsive", "layout"]
+    },
+    {
+      "id": "css-stacking-context",
+      "type": "multiple-choice",
+      "question": "Which property does NOT create a new stacking context?",
+      "options": [
+        "position: relative",
+        "opacity: 0.99",
+        "transform: scale(1)",
+        "isolation: isolate"
+      ],
+      "correctAnswer": 0,
+      "explanation": "position: relative alone does not create a new stacking context. The other options all create stacking contexts: opacity less than 1, any transform value, and isolation: isolate. Understanding stacking contexts is crucial for managing z-index and layer rendering.",
+      "difficulty": "advanced",
+      "tags": ["stacking-context", "z-index"]
+    },
+    {
+      "id": "css-logical-properties",
+      "type": "multiple-choice",
+      "question": "What is the logical property equivalent of margin-left in a horizontal writing mode?",
+      "options": [
+        "margin-inline-start",
+        "margin-block-start",
+        "margin-inline-end",
+        "margin-block-end"
+      ],
+      "correctAnswer": 0,
+      "explanation": "margin-inline-start is the logical equivalent of margin-left in horizontal writing modes. Logical properties adapt to the writing mode and direction, making internationalization easier. For vertical writing modes, it would correspond to the start edge of the inline axis.",
+      "difficulty": "intermediate",
+      "tags": ["logical-properties", "internationalization"]
+    }
+  ]
+}

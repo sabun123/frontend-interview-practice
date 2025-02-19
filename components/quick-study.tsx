@@ -1,28 +1,13 @@
 "use client"
 
 import { useEffect, useState, useRef } from 'react';
-import { Question, MultipleChoiceQuestion } from '@/types';
+import { MultipleChoiceQuestion } from '@/types';
 import { Button } from './ui/button';
 import { shuffle } from '@/lib/utils';
-import topics from '@/data/topics.json';
 import Link from 'next/link';
 
 const QUESTION_COUNT = 5;
 const TIME_PER_QUESTION = 30; // seconds
-
-async function getAllQuestions(): Promise<MultipleChoiceQuestion[]> {
-  const allQuestions: MultipleChoiceQuestion[] = [];
-  
-  for (const topic of topics.topics) {
-    const questions = await import(`@/data/${topic.questionsFile}`);
-    const multipleChoiceQuestions = questions.default.questions.filter(
-      (q: Question): q is MultipleChoiceQuestion => q.type === 'multiple-choice'
-    );
-    allQuestions.push(...multipleChoiceQuestions);
-  }
-  
-  return allQuestions;
-}
 
 interface QuestionState {
   question: MultipleChoiceQuestion;
@@ -63,17 +48,19 @@ function TimerCircle({ timeLeft, totalTime }: { timeLeft: number; totalTime: num
   );
 }
 
-export function QuickStudyComponent() {
+export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleChoiceQuestion[] }) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const explanationRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
+
+    if(!allQuestions || allQuestions.length === 0) return;
+
     async function initializeQuestions() {
-      const allQuestions = await getAllQuestions();
       const shuffledQuestions = shuffle(allQuestions)
         .slice(0, QUESTION_COUNT)
         .map(q => ({
@@ -87,7 +74,7 @@ export function QuickStudyComponent() {
     }
     
     initializeQuestions();
-  }, []);
+  }, [allQuestions]);
 
   useEffect(() => {
     if (loading || isComplete) return;

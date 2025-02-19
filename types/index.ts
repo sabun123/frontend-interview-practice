@@ -8,6 +8,10 @@ export interface Topic {
   questionsFile: string;
 }
 
+export interface TopicsData {
+  topics: Topic[];
+}
+
 export type QuestionType = 'text' | 'multiple-choice';
 
 interface BaseQuestion {
