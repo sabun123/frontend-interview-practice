@@ -36,7 +36,7 @@ async function getTopicQuestions(topicId: string): Promise<QuestionsData> {
   if (!topic) throw notFound();
 
   try {
-    const questionFile = await import(`@/public/data/${topic.questionsFile}`);
+    const questionFile = await import(`@/app/data/${topic.questionsFile}`);
     return questionFile.default as QuestionsData;
   } catch (error) {
     console.error("Error loading questions:", error);

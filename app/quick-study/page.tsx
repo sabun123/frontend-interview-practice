@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { QuickStudyComponent } from "@/components/quick-study";
 import { topicsData } from "@/app/data/topics";
 import { MultipleChoiceQuestion, Question } from "@/types";
-import { promises as fs } from "fs";
 
 export const metadata: Metadata = {
   title: "Quick Study Mode",
@@ -15,11 +14,8 @@ export default async function QuickStudyPage() {
 
   for (const topic of topicsData.topics) {
     try {
-      const questionFile = await fs.readFile(
-        process.cwd() + `/app/data/${topic.questionsFile}`,
-        "utf8"
-      );
-      const questionsData = JSON.parse(questionFile);
+      const questionFile = await import(`@/app/data/${topic.questionsFile}`);
+      const questionsData = questionFile.default;
 
       const multipleChoiceQuestions = questionsData.questions.filter(
         (q: Question): q is MultipleChoiceQuestion =>
