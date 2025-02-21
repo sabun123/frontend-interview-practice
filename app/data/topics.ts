@@ -27,11 +27,11 @@ export const topicsData: TopicsData = {
       questionsFile: "css-questions.json",
     },
     {
-      id: "babel",
-      name: "Babel",
-      icon: "package",
-      description: "JavaScript compilation and transformation",
-      questionsFile: "babel-questions.json",
+      id: "nextjs",
+      name: "Next.js",
+      icon: "server",
+      description: "Server-side rendering and modern React frameworks",
+      questionsFile: "nextjs-questions.json",
     },
     {
       id: "html5",
@@ -41,11 +41,11 @@ export const topicsData: TopicsData = {
       questionsFile: "html-questions.json",
     },
     {
-      id: "nextjs",
-      name: "Next.js",
-      icon: "server",
-      description: "Server-side rendering and modern React frameworks",
-      questionsFile: "nextjs-questions.json",
+      id: "babel",
+      name: "Babel",
+      icon: "package",
+      description: "JavaScript compilation and transformation",
+      questionsFile: "babel-questions.json",
     },
   ],
 };
