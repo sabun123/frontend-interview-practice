@@ -1,0 +1,371 @@
+{
+  "questions": [
+    {
+      "id": "rest-principles",
+      "type": "text",
+      "question": "Explain the key principles of REST (Representational State Transfer) architecture",
+      "answer": "REST principles include:\n1. Stateless: Each request contains all needed information\n2. Client-Server: Separation of concerns between frontend and backend\n3. Cacheable: Responses must define themselves as cacheable or not\n4. Uniform Interface:\n   - Resource identification in requests\n   - Resource manipulation through representations\n   - Self-descriptive messages\n   - HATEOAS (Hypermedia as the Engine of Application State)\n5. Layered System: Client can't tell if connected directly to server\n6. Code on Demand (optional): Server can extend client functionality",
+      "difficulty": "intermediate",
+      "tags": ["architecture", "fundamentals"]
+    },
+    {
+      "id": "http-methods",
+      "type": "multiple-choice",
+      "question": "Which HTTP method should be used for updating only specific fields of a resource?",
+      "options": ["PUT", "PATCH", "POST", "UPDATE"],
+      "correctAnswer": 1,
+      "explanation": "PATCH is best for partial updates because:\n- PUT should update the entire resource\n- POST is for creating new resources\n- PATCH allows updating specific fields only\n- More efficient for small changes\n- Reduces bandwidth usage",
+      "difficulty": "beginner",
+      "tags": ["http-methods", "best-practices"]
+    },
+    {
+      "id": "status-codes",
+      "type": "text",
+      "question": "Explain the different categories of HTTP status codes and when to use them",
+      "answer": "HTTP Status Code Categories:\n\n1. 1xx (Informational):\n- 100 Continue\n- 101 Switching Protocols\n\n2. 2xx (Success):\n- 200 OK: Request successful\n- 201 Created: Resource created\n- 204 No Content: Successful but no response body\n\n3. 3xx (Redirection):\n- 301 Moved Permanently\n- 304 Not Modified (cache)\n\n4. 4xx (Client Error):\n- 400 Bad Request\n- 401 Unauthorized\n- 403 Forbidden\n- 404 Not Found\n- 422 Unprocessable Entity\n\n5. 5xx (Server Error):\n- 500 Internal Server Error\n- 502 Bad Gateway\n- 503 Service Unavailable",
+      "difficulty": "intermediate",
+      "tags": ["status-codes", "error-handling"]
+    },
+    {
+      "id": "rest-authentication",
+      "type": "multiple-choice",
+      "question": "What is the recommended way to handle authentication in REST APIs?",
+      "options": [
+        "Storing credentials in the URL",
+        "Using session cookies",
+        "Using JWT in Authorization header",
+        "Passing credentials in request body"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Using JWT in Authorization header is recommended because:\n- Stateless authentication\n- Secure transmission of credentials\n- Scalable across multiple servers\n- Can include user claims/roles\n- Standard format and encryption",
+      "difficulty": "intermediate",
+      "tags": ["security", "authentication"]
+    },
+    {
+      "id": "api-versioning",
+      "type": "text",
+      "question": "Describe different API versioning strategies and their trade-offs",
+      "answer": "API Versioning Strategies:\n\n1. URI Path Versioning:\n/api/v1/users\n- Explicit and clear\n- Easy to implement\n- Not very flexible\n\n2. Query Parameter:\n/api/users?version=1\n- Optional versioning\n- Backward compatible\n- Less RESTful\n\n3. Custom Header:\nX-API-Version: 1\n- Clean URLs\n- More complex to implement\n- Less visible\n\n4. Accept Header:\nAccept: application/vnd.company.app-v1+json\n- Most RESTful approach\n- Complex to implement\n- Hard to test in browser",
+      "difficulty": "advanced",
+      "tags": ["versioning", "best-practices"]
+    },
+    {
+      "id": "rest-security",
+      "type": "multiple-choice",
+      "question": "Which security measure is NOT typically implemented in REST APIs?",
+      "options": ["Rate limiting", "OAuth 2.0", "WebSocket security", "HTTPS"],
+      "correctAnswer": 2,
+      "explanation": "WebSocket security is not typically part of REST APIs because:\n- REST is stateless and request/response based\n- WebSockets are for real-time, persistent connections\n- Different security concerns and patterns\n- Uses different protocols (WS/WSS vs HTTP/HTTPS)",
+      "difficulty": "advanced",
+      "tags": ["security", "best-practices"]
+    },
+    {
+      "id": "rest-caching",
+      "type": "text",
+      "question": "Explain REST API caching strategies and relevant HTTP headers",
+      "answer": "REST API Caching Strategies:\n\n1. Cache-Control Header:\n- max-age: Duration in seconds\n- no-cache: Validate before using\n- no-store: Don't cache\n- private/public: Client/shared caching\n\n2. ETag Header:\n- Unique identifier for resource version\n- Used with If-None-Match for validation\n\n3. Last-Modified Header:\n- Timestamp of last change\n- Used with If-Modified-Since\n\n4. Implementation:\n- CDN caching\n- Browser caching\n- Application-level caching\n- Cache invalidation strategies",
+      "difficulty": "advanced",
+      "tags": ["caching", "performance"]
+    },
+    {
+      "id": "rest-pagination",
+      "type": "multiple-choice",
+      "question": "What's the most RESTful way to implement pagination?",
+      "options": [
+        "Using page numbers in query parameters",
+        "Using offset and limit parameters",
+        "Using cursor-based pagination with links",
+        "Returning all data at once"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Cursor-based pagination with links is most RESTful because:\n- Follows HATEOAS principles\n- More efficient for large datasets\n- Handles concurrent updates better\n- Provides clear navigation paths\n- Uses Link header for next/prev/first/last",
+      "difficulty": "intermediate",
+      "tags": ["pagination", "best-practices"]
+    },
+    {
+      "id": "rest-idempotency",
+      "type": "multiple-choice",
+      "question": "Which HTTP methods are idempotent?",
+      "options": [
+        "GET, PUT, DELETE",
+        "POST, PATCH, DELETE",
+        "GET, POST, PUT",
+        "POST, DELETE, HEAD"
+      ],
+      "correctAnswer": 0,
+      "explanation": "GET, PUT, and DELETE are idempotent because:\n- Multiple identical requests have same effect as single request\n- GET never modifies state\n- PUT replaces entire resource\n- DELETE removes resource (subsequent calls find nothing to delete)\n- POST is not idempotent as it creates new resource each time",
+      "difficulty": "intermediate",
+      "tags": ["http-methods", "concepts"]
+    },
+    {
+      "id": "rest-response-format",
+      "type": "multiple-choice",
+      "question": "What's the most appropriate Content-Type header for a REST API response?",
+      "options": [
+        "text/plain",
+        "application/json",
+        "text/html",
+        "application/xml"
+      ],
+      "correctAnswer": 1,
+      "explanation": "application/json is most appropriate because:\n- Universal format support\n- Easy to parse and generate\n- Language-agnostic\n- Human-readable\n- Smaller payload than XML",
+      "difficulty": "beginner",
+      "tags": ["headers", "response"]
+    },
+    {
+      "id": "rest-error-handling",
+      "type": "multiple-choice",
+      "question": "What's the best practice for handling validation errors in REST APIs?",
+      "options": [
+        "Return 500 with error details",
+        "Return 400 with no details",
+        "Return 422 with validation errors array",
+        "Return 200 with error flag"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Returning 422 with validation errors is best because:\n- 422 specifically means unprocessable entity\n- Provides detailed feedback\n- Helps clients fix their request\n- Follows REST conventions\n- Better than generic 400 response",
+      "difficulty": "intermediate",
+      "tags": ["error-handling", "best-practices"]
+    },
+    {
+      "id": "rest-methods-safety",
+      "type": "multiple-choice",
+      "question": "Which HTTP methods are considered 'safe' in REST?",
+      "options": [
+        "GET and HEAD only",
+        "GET, HEAD, and OPTIONS",
+        "GET, HEAD, and POST",
+        "All methods are safe if used correctly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GET, HEAD, and OPTIONS are safe methods because:\n- They don't modify server state\n- Read-only operations\n- Can be cached\n- Safe for preflight requests\n- Can be called repeatedly without side effects",
+      "difficulty": "intermediate",
+      "tags": ["http-methods", "safety"]
+    },
+    {
+      "id": "rest-resource-naming",
+      "type": "multiple-choice",
+      "question": "Which URL pattern best follows REST naming conventions?",
+      "options": [
+        "/getUserById/123",
+        "/users/123",
+        "/api/deleteUser?id=123",
+        "/user/123/getData"
+      ],
+      "correctAnswer": 1,
+      "explanation": "/users/123 is best because:\n- Uses nouns instead of verbs\n- Represents resource hierarchy\n- Clean and readable\n- Follows REST resource naming\n- HTTP method determines action",
+      "difficulty": "beginner",
+      "tags": ["url-design", "conventions"]
+    },
+    {
+      "id": "rest-hateoas",
+      "type": "multiple-choice",
+      "question": "What is the main purpose of HATEOAS in REST APIs?",
+      "options": [
+        "To improve API security",
+        "To enable client navigation through API endpoints",
+        "To reduce server load",
+        "To validate request data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HATEOAS enables client navigation because:\n- Provides discoverable endpoints\n- Makes API self-documenting\n- Reduces client-server coupling\n- Allows API evolution\n- Clients can follow links dynamically",
+      "difficulty": "advanced",
+      "tags": ["hateoas", "architecture"]
+    },
+    {
+      "id": "rest-bulk-operations",
+      "type": "multiple-choice",
+      "question": "What's the RESTful way to handle bulk operations?",
+      "options": [
+        "Multiple individual requests",
+        "Custom endpoint with verb",
+        "POST to collection endpoint",
+        "New HTTP method"
+      ],
+      "correctAnswer": 2,
+      "explanation": "POST to collection endpoint is RESTful because:\n- Maintains REST principles\n- Efficient for bulk operations\n- Allows atomic transactions\n- Consistent with resource model\n- Can return bulk results",
+      "difficulty": "advanced",
+      "tags": ["operations", "best-practices"]
+    },
+    {
+      "id": "rest-rate-limiting",
+      "type": "multiple-choice",
+      "question": "Which HTTP header is commonly used to inform clients about rate limiting status?",
+      "options": [
+        "X-Rate-Info",
+        "Rate-Limit-Remaining",
+        "X-RateLimit-Remaining",
+        "API-Rate-Limit"
+      ],
+      "correctAnswer": 2,
+      "explanation": "X-RateLimit-Remaining is the standard because:\n- Widely adopted by major APIs\n- Usually paired with X-RateLimit-Limit and X-RateLimit-Reset\n- Helps clients manage their request quotas\n- Enables proactive throttling\n- Clear numerical indication of remaining requests",
+      "difficulty": "intermediate",
+      "tags": ["headers", "rate-limiting"]
+    },
+    {
+      "id": "rest-cors",
+      "type": "multiple-choice",
+      "question": "What is the correct sequence of a CORS preflight request?",
+      "options": [
+        "OPTIONS request → Response with CORS headers → Original request",
+        "GET request with Origin header → Response with Allow-Origin",
+        "POST request → Server validates Origin → Response",
+        "Direct request with CORS headers → Server response"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct CORS preflight sequence is OPTIONS first because:\n- Checks if actual request is allowed\n- Validates HTTP method and headers\n- Prevents unnecessary main requests\n- Reduces server load\n- Required for non-simple requests",
+      "difficulty": "advanced",
+      "tags": ["security", "cors"]
+    },
+    {
+      "id": "rest-nested-resources",
+      "type": "multiple-choice",
+      "question": "What's the most RESTful way to represent nested resources?",
+      "options": [
+        "/api/users/123?include=posts,comments",
+        "/api/users/123/posts/456/comments",
+        "/api/getUserPostsAndComments/123",
+        "/api/resources?type=users,posts,comments&userId=123"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nested URL structure is most RESTful because:\n- Reflects resource relationships\n- Clear ownership hierarchy\n- Follows URI resource modeling\n- Intuitive navigation path\n- Matches database relationships",
+      "difficulty": "intermediate",
+      "tags": ["url-design", "resources"]
+    },
+    {
+      "id": "rest-graphql-comparison",
+      "type": "multiple-choice",
+      "question": "When should you choose REST over GraphQL?",
+      "options": [
+        "When you need real-time updates",
+        "When clients need very specific data shapes",
+        "When you have fixed, well-defined resource types",
+        "When you need to reduce backend complexity"
+      ],
+      "correctAnswer": 2,
+      "explanation": "REST is better for fixed resource types because:\n- Simpler to implement and maintain\n- Better caching capabilities\n- Clear resource boundaries\n- Standard HTTP cache infrastructure\n- Easier to document and understand",
+      "difficulty": "advanced",
+      "tags": ["architecture", "comparison"]
+    },
+    {
+      "id": "rest-conditional-requests",
+      "type": "multiple-choice",
+      "question": "Which combination of headers is used for conditional GET requests?",
+      "options": [
+        "If-Match and ETag",
+        "If-None-Match and Last-Modified",
+        "If-Modified-Since and ETag",
+        "If-None-Match and ETag"
+      ],
+      "correctAnswer": 3,
+      "explanation": "If-None-Match with ETag is optimal because:\n- Provides strong validation\n- More precise than date-based validation\n- Prevents lost updates\n- Supports weak validation\n- Works with multiple ETags",
+      "difficulty": "advanced",
+      "tags": ["caching", "headers"]
+    },
+    {
+      "id": "rest-logging",
+      "type": "multiple-choice",
+      "question": "What's the best practice for API request logging?",
+      "options": [
+        "Log everything including sensitive data",
+        "Log only errors and exceptions",
+        "Log request metadata with sanitized headers",
+        "Log only successful requests"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Logging sanitized metadata is best because:\n- Balances security and debugging needs\n- Complies with data protection regulations\n- Provides necessary troubleshooting info\n- Preserves user privacy\n- Optimizes storage usage",
+      "difficulty": "intermediate",
+      "tags": ["logging", "security"]
+    },
+    {
+      "id": "rest-microservices",
+      "type": "multiple-choice",
+      "question": "How should REST APIs handle inter-service communication in microservices?",
+      "options": [
+        "Always use synchronous REST calls",
+        "Use message queues instead of REST",
+        "Combine REST with event-driven patterns",
+        "Use GraphQL for all services"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Combining REST with events is best because:\n- Provides flexibility in communication\n- Maintains service independence\n- Better fault tolerance\n- Supports both sync and async needs\n- Enables eventual consistency",
+      "difficulty": "advanced",
+      "tags": ["microservices", "architecture"]
+    },
+    {
+      "id": "rest-request-encoding",
+      "type": "multiple-choice",
+      "question": "Which Content-Type should be used when sending form data in REST APIs?",
+      "options": [
+        "application/x-www-form-urlencoded",
+        "multipart/form-data",
+        "application/json",
+        "text/plain"
+      ],
+      "correctAnswer": 0,
+      "explanation": "application/x-www-form-urlencoded is standard for form data because:\n- Default encoding for HTML forms\n- Widely supported across browsers\n- Good for simple key-value data\n- URL-safe format\n- Efficient for small payloads",
+      "difficulty": "intermediate",
+      "tags": ["headers", "forms"]
+    },
+    {
+      "id": "rest-cdn-usage",
+      "type": "multiple-choice",
+      "question": "What's the best approach for serving static assets through a REST API?",
+      "options": [
+        "Base64 encode and include in JSON response",
+        "Serve directly from API server",
+        "Return signed CDN URLs in API response",
+        "Include as binary data in response"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Returning signed CDN URLs is best because:\n- Offloads bandwidth from API servers\n- Better global distribution\n- Improved load times\n- Reduced server costs\n- Better scalability",
+      "difficulty": "advanced",
+      "tags": ["performance", "architecture"]
+    },
+    {
+      "id": "rest-file-upload",
+      "type": "multiple-choice",
+      "question": "What's the most efficient way to handle large file uploads in REST APIs?",
+      "options": [
+        "Single POST request with entire file",
+        "Chunked upload with resumability",
+        "Base64 encoded in JSON body",
+        "Multiple simultaneous POST requests"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chunked upload is best because:\n- Supports pause/resume\n- Better error recovery\n- Memory efficient\n- Progress tracking\n- Works with large files",
+      "difficulty": "advanced",
+      "tags": ["upload", "performance"]
+    },
+    {
+      "id": "rest-api-gateway",
+      "type": "multiple-choice",
+      "question": "Which feature is NOT typically handled by an API Gateway?",
+      "options": [
+        "Rate limiting",
+        "Database queries",
+        "Request routing",
+        "Authentication"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Database queries shouldn't be in API Gateway because:\n- Violates separation of concerns\n- Should be handled by services\n- Reduces gateway performance\n- Increases system coupling\n- Makes scaling harder",
+      "difficulty": "advanced",
+      "tags": ["architecture", "best-practices"]
+    },
+    {
+      "id": "rest-documentation",
+      "type": "multiple-choice",
+      "question": "Which API documentation format is most widely used for REST APIs?",
+      "options": [
+        "RAML",
+        "API Blueprint",
+        "OpenAPI (Swagger)",
+        "WADL"
+      ],
+      "correctAnswer": 2,
+      "explanation": "OpenAPI (Swagger) is most popular because:\n- Large ecosystem of tools\n- Language-agnostic\n- Interactive documentation\n- Code generation support\n- Industry standard",
+      "difficulty": "intermediate",
+      "tags": ["documentation", "tools"]
+    }
+  ]
+}

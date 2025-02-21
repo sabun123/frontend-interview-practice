@@ -27,6 +27,13 @@ export const topicsData: TopicsData = {
       questionsFile: "css-questions.json",
     },
     {
+      id: "rest-apis",
+      name: "REST APIs",
+      icon: "package",
+      description: "RESTful API concepts and best practices",
+      questionsFile: "rest-apis-questions.json",
+    },
+    {
       id: "nextjs",
       name: "Next.js",
       icon: "server",
