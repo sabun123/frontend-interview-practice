@@ -60,6 +60,29 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
+  @keyframes border-gradient {
+    0% {
+      border-color: theme("colors.blue.500");
+      box-shadow: 0 0 10px theme("colors.blue.500/20");
+    }
+    25% {
+      border-color: theme("colors.purple.500");
+      box-shadow: 0 0 10px theme("colors.purple.500/20");
+    }
+    50% {
+      border-color: theme("colors.pink.500");
+      box-shadow: 0 0 10px theme("colors.pink.500/20");
+    }
+    75% {
+      border-color: theme("colors.orange.500");
+      box-shadow: 0 0 10px theme("colors.orange.500/20");
+    }
+    100% {
+      border-color: theme("colors.blue.500");
+      box-shadow: 0 0 10px theme("colors.blue.500/20");
+    }
+  }
 }
 
 @layer base {
@@ -68,5 +91,12 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animated-border {
+    @apply border-2 relative;
+    animation: border-gradient 4s ease infinite;
   }
 }

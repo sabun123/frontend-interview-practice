@@ -65,6 +65,46 @@ export function QuickStudyComponent({
   const [score, setScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const explanationRef = useRef<HTMLDivElement>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  // Clear timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
+
+  const scrollToExplanation = () => {
+    // Clear any existing timeout
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    // Set multiple timeouts to ensure the scroll happens
+    scrollTimeout.current = setTimeout(() => {
+      if (explanationRef.current) {
+        explanationRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center", // Center the element instead of nearest
+        });
+        // Focus the element to ensure it's in view
+        explanationRef.current.focus();
+        
+        // Double-check scroll position after a short delay
+        setTimeout(() => {
+          const rect = explanationRef.current?.getBoundingClientRect();
+          if (rect && (rect.top < 0 || rect.bottom > window.innerHeight)) {
+            explanationRef.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }
+        }, 150);
+      }
+    }, 200); // Increased initial delay for more reliability
+  };
 
   useEffect(() => {
     if (!allQuestions || allQuestions.length === 0) return;
@@ -142,13 +182,8 @@ export function QuickStudyComponent({
       return newQuestions;
     });
 
-    // Focus on explanation after a short delay to allow for the explanation to render
-    setTimeout(() => {
-      explanationRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
-    }, 100);
+    // Call our new scroll function
+    scrollToExplanation();
 
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
@@ -230,7 +265,7 @@ export function QuickStudyComponent({
         {currentQuestion.answered && (
           <div
             ref={explanationRef}
-            className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded focus:outline-none"
+            className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             tabIndex={-1}
           >
             <p className="font-semibold dark:text-gray-100">Explanation:</p>
