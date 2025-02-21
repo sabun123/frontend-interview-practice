@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { MultipleChoiceQuestion } from '@/types';
-import { Button } from './ui/button';
-import { shuffle } from '@/lib/utils';
-import Link from 'next/link';
+import { useEffect, useState, useRef } from "react";
+import { MultipleChoiceQuestion } from "@/types";
+import { Button } from "./ui/button";
+import { shuffle } from "@/lib/utils";
+import Link from "next/link";
 
 const QUESTION_COUNT = 5;
 const TIME_PER_QUESTION = 30; // seconds
@@ -16,7 +16,13 @@ interface QuestionState {
   timeLeft: number;
 }
 
-function TimerCircle({ timeLeft, totalTime }: { timeLeft: number; totalTime: number }) {
+function TimerCircle({
+  timeLeft,
+  totalTime,
+}: {
+  timeLeft: number;
+  totalTime: number;
+}) {
   const progress = (timeLeft / totalTime) * 100;
   const circumference = 2 * Math.PI * 45; // radius is 45
   const strokeDashoffset = circumference - (progress / 100) * circumference;
@@ -48,7 +54,11 @@ function TimerCircle({ timeLeft, totalTime }: { timeLeft: number; totalTime: num
   );
 }
 
-export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleChoiceQuestion[] }) {
+export function QuickStudyComponent({
+  allQuestions,
+}: {
+  allQuestions: MultipleChoiceQuestion[];
+}) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -57,33 +67,32 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
   const explanationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-
-    if(!allQuestions || allQuestions.length === 0) return;
+    if (!allQuestions || allQuestions.length === 0) return;
 
     async function initializeQuestions() {
       const shuffledQuestions = shuffle(allQuestions)
         .slice(0, QUESTION_COUNT)
-        .map(q => ({
+        .map((q) => ({
           question: q,
           answered: false,
           selectedAnswer: null,
-          timeLeft: TIME_PER_QUESTION
+          timeLeft: TIME_PER_QUESTION,
         }));
       setQuestions(shuffledQuestions);
       setLoading(false);
     }
-    
+
     initializeQuestions();
   }, [allQuestions]);
 
   useEffect(() => {
     if (loading || isComplete) return;
-    
+
     const timer = setInterval(() => {
-      setQuestions(prevQuestions => {
+      setQuestions((prevQuestions) => {
         const newQuestions = [...prevQuestions];
         const currentQuestion = newQuestions[currentQuestionIndex];
-        
+
         if (currentQuestion && !currentQuestion.answered) {
           if (currentQuestion.timeLeft > 0) {
             currentQuestion.timeLeft--;
@@ -92,7 +101,7 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
             // Move to next question after time runs out
             setTimeout(() => {
               if (currentQuestionIndex < questions.length - 1) {
-                setCurrentQuestionIndex(prev => prev + 1);
+                setCurrentQuestionIndex((prev) => prev + 1);
               } else {
                 setIsComplete(true);
               }
@@ -107,7 +116,9 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
   }, [currentQuestionIndex, loading, isComplete, questions.length]);
 
   if (loading) {
-    return <div className="text-lg dark:text-gray-300">Loading questions...</div>;
+    return (
+      <div className="text-lg dark:text-gray-300">Loading questions...</div>
+    );
   }
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -117,15 +128,15 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
 
     const isCorrect = optionIndex === currentQuestion.question.correctAnswer;
 
-    setQuestions(prev => {
+    setQuestions((prev) => {
       const newQuestions = [...prev];
       // Only update if the question hasn't been answered yet
       if (!newQuestions[currentQuestionIndex].answered) {
         newQuestions[currentQuestionIndex].answered = true;
         newQuestions[currentQuestionIndex].selectedAnswer = optionIndex;
-        
+
         if (isCorrect) {
-          setScore(prev => prev + 1);
+          setScore((prev) => prev + 1);
         }
       }
       return newQuestions;
@@ -133,33 +144,35 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
 
     // Focus on explanation after a short delay to allow for the explanation to render
     setTimeout(() => {
-      explanationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      explanationRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }, 100);
 
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(prev => prev + 1);
+        setCurrentQuestionIndex((prev) => prev + 1);
       } else {
         setIsComplete(true);
       }
-    }, 1000);
+    }, 5000);
   };
 
   if (isComplete) {
     return (
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold dark:text-gray-100">Study Session Complete!</h2>
+        <h2 className="text-2xl font-bold dark:text-gray-100">
+          Study Session Complete!
+        </h2>
         <div className="text-xl dark:text-gray-200">
-          Your score: {score} out of {questions.length} ({Math.round(score/questions.length * 100)}%)
+          Your score: {score} out of {questions.length} (
+          {Math.round((score / questions.length) * 100)}%)
         </div>
         <div className="flex gap-4">
-          <Button onClick={() => window.location.reload()}>
-            Try Again
-          </Button>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
           <Link href="/">
-            <Button variant="outline">
-              Back to Home
-            </Button>
+            <Button variant="outline">Back to Home</Button>
           </Link>
         </div>
       </div>
@@ -169,25 +182,37 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <div className="dark:text-gray-200">Question {currentQuestionIndex + 1} of {questions.length}</div>
-        <TimerCircle timeLeft={currentQuestion.timeLeft} totalTime={TIME_PER_QUESTION} />
+        <div className="dark:text-gray-200">
+          Question {currentQuestionIndex + 1} of {questions.length}
+        </div>
+        <TimerCircle
+          timeLeft={currentQuestion.timeLeft}
+          totalTime={TIME_PER_QUESTION}
+        />
       </div>
-      
+
       <div className="p-6 border rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
-        <h3 className="text-xl font-semibold mb-4 dark:text-gray-100">{currentQuestion.question.question}</h3>
-        
+        <h3 className="text-xl font-semibold mb-4 dark:text-gray-100">
+          {currentQuestion.question.question}
+        </h3>
+
         <div className="space-y-3">
           {currentQuestion.question.options.map((option, index) => {
             const isSelected = currentQuestion.selectedAnswer === index;
             const isCorrect = currentQuestion.question.correctAnswer === index;
             const showResult = currentQuestion.answered;
-            
-            let buttonClass = "w-full justify-start text-left whitespace-normal min-h-[2.5rem] py-2 px-4";
+
+            let buttonClass =
+              "w-full justify-start text-left whitespace-normal min-h-[2.5rem] py-2 px-4";
             if (showResult) {
-              if (isCorrect) buttonClass += " bg-green-100 hover:bg-green-100 dark:bg-green-900/30 dark:hover:bg-green-900/30";
-              else if (isSelected) buttonClass += " bg-red-100 hover:bg-red-100 dark:bg-red-900/30 dark:hover:bg-red-900/30";
+              if (isCorrect)
+                buttonClass +=
+                  " bg-green-100 hover:bg-green-100 dark:bg-green-900/30 dark:hover:bg-green-900/30";
+              else if (isSelected)
+                buttonClass +=
+                  " bg-red-100 hover:bg-red-100 dark:bg-red-900/30 dark:hover:bg-red-900/30";
             }
-            
+
             return (
               <Button
                 key={index}
@@ -201,11 +226,17 @@ export function QuickStudyComponent({ allQuestions }: { allQuestions: MultipleCh
             );
           })}
         </div>
-        
+
         {currentQuestion.answered && (
-          <div ref={explanationRef} className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded focus:outline-none" tabIndex={-1}>
+          <div
+            ref={explanationRef}
+            className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded focus:outline-none"
+            tabIndex={-1}
+          >
             <p className="font-semibold dark:text-gray-100">Explanation:</p>
-            <p className="dark:text-gray-300">{currentQuestion.question.explanation}</p>
+            <p className="dark:text-gray-300">
+              {currentQuestion.question.explanation}
+            </p>
           </div>
         )}
       </div>
