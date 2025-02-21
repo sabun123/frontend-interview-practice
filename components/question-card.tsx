@@ -94,7 +94,9 @@ export function QuestionCard({ question }: { question: Question }) {
           ) : (
             <div className="space-y-2 p-4 rounded-lg bg-card animated-border">
               <p className="font-medium">Explanation:</p>
-              <p className="text-muted-foreground">{question.explanation}</p>
+              <p className="whitespace-pre-wrap text-muted-foreground">
+                {question.explanation}
+              </p>
             </div>
           )}
         </div>

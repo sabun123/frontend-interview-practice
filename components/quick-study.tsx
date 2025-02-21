@@ -65,7 +65,9 @@ export function QuickStudyComponent({
   const [score, setScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const explanationRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  );
 
   // Clear timeout on unmount
   useEffect(() => {
@@ -91,7 +93,7 @@ export function QuickStudyComponent({
         });
         // Focus the element to ensure it's in view
         explanationRef.current.focus();
-        
+
         // Double-check scroll position after a short delay
         setTimeout(() => {
           const rect = explanationRef.current?.getBoundingClientRect();
@@ -269,7 +271,7 @@ export function QuickStudyComponent({
             tabIndex={-1}
           >
             <p className="font-semibold dark:text-gray-100">Explanation:</p>
-            <p className="dark:text-gray-300">
+            <p className="dark:text-gray-300 whitespace-pre-wrap mt-2">
               {currentQuestion.question.explanation}
             </p>
           </div>
